@@ -53,20 +53,6 @@ const Avatar: Component<{
     xxl: styles.xxlMissing,
   };
 
-  const imgError = (event: any) => {
-    const image = event.target;
-
-    let src = props.user?.picture || props.src;
-
-    if (image.src === src) {
-      src = defaultAvatar;
-    }
-
-    image.onerror = "";
-    image.src = src;
-    return true;
-  }
-
   const highlightClass = () => {
     if (props.highlightBorder) {
       return styles.highlightBorder;
@@ -142,14 +128,13 @@ const Avatar: Component<{
       >
         <div class={`${styles.missingBack} ${notCachedFlag()}`}>
           <Show when={props.zoomable} fallback={
-            <img src={imageSrc()} alt="avatar" onerror={imgError}/>
+            <img src={imageSrc()} alt="avatar" />
           }>
             <NoteImage
               class={props.zoomable ? 'profile_image' : ''}
               media={imageMedia()}
               src={imageSrc()}
               altSrc={props.user?.picture || props.src}
-              onError={imgError}
             />
           </Show>
         </div>
