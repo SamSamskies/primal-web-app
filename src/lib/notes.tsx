@@ -308,7 +308,7 @@ type NostrEvent = { content: string, kind: number, tags: string[][], created_at:
 
 export const sendLike = async (note: PrimalNote, relays: Relay[], relaySettings?: NostrRelays) => {
   const event = {
-    content: '+',
+    content: '🤙',
     kind: Kind.Reaction,
     tags: [
       ['e', note.post.id],
