@@ -22,6 +22,7 @@ import NoteFooterActionButton from './NoteFooterActionButton';
 import { NoteReactionsState } from '../Note';
 import { SetStoreFunction } from 'solid-js/store';
 import BookmarkNote from '../../BookmarkNote/BookmarkNote';
+import { useShowLnbcWithNoFooterModal } from "../../../hooks/useShowLnbcWithNoFooterModal";
 
 export const lottieDuration = () => zapMD.op * 1_000 / zapMD.fr;
 
@@ -41,6 +42,7 @@ const NoteFooter: Component<{
   const intl = useIntl();
   const settings = useSettingsContext();
   const app = useAppContext();
+  const showLnbcWithNoFooterModal = useShowLnbcWithNoFooterModal();
 
   let medZapAnimation: HTMLElement | undefined;
 
@@ -276,7 +278,7 @@ const NoteFooter: Component<{
     props.onZapAnim && props.onZapAnim({ amount, message, emoji })
 
     setTimeout(async () => {
-      const success = await zapNote(props.note, account.publicKey, amount, message, account.relays);
+      const success = await zapNote(props.note, account.publicKey, amount, message, account.relays, showLnbcWithNoFooterModal);
 
       props.updateState('isZapping', () => false);
 

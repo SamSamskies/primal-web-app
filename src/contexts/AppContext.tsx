@@ -60,6 +60,7 @@ export type AppContextStore = {
   showNoteContextMenu: boolean,
   noteContextMenuInfo: NoteContextMenuInfo | undefined,
   showLnInvoiceModal: boolean,
+  showLnInvoiceWithNoFooterModal: boolean
   lnbc: InvoiceInfo | undefined,
   showCashuInvoiceModal: boolean,
   cashu: InvoiceInfo | undefined,
@@ -76,6 +77,8 @@ export type AppContextStore = {
     closeContextMenu: () => void,
     openLnbcModal: (lnbc: string, onPay: () => void) => void,
     closeLnbcModal: () => void,
+    openLnbcWithNoFooterModal: (lnbc: string, onPay: () => void) => void,
+    closeLnbcWithNoFooterModal: () => void,
     openCashuModal: (cashu: string, onPay: () => void) => void,
     closeCashuModal: () => void,
     openConfirmModal: (confirmInfo: ConfirmInfo) => void,
@@ -100,6 +103,7 @@ const initialData: Omit<AppContextStore, 'actions'> = {
   showNoteContextMenu: false,
   noteContextMenuInfo: undefined,
   showLnInvoiceModal: false,
+  showLnInvoiceWithNoFooterModal: false,
   lnbc: undefined,
   showCashuInvoiceModal: false,
   cashu: undefined,
@@ -183,6 +187,19 @@ export const AppProvider = (props: { children: JSXElement }) => {
     updateStore('lnbc', () => undefined);
   };
 
+  const openLnbcWithNoFooterModal = (lnbc: string, onPay: () => void) => {
+    updateStore('showLnInvoiceWithNoFooterModal', () => true);
+    updateStore('lnbc', () => ({
+      invoice: lnbc,
+      onPay,
+      onCancel: () => updateStore('showLnInvoiceWithNoFooterModal', () => false),
+    }))
+  };
+
+  const closeLnbcWithNoFooterModal = () => {
+    updateStore('showLnInvoiceWithNoFooterModal', () => false);
+    updateStore('lnbc', () => undefined);
+  };
 
   const openCashuModal = (cashu: string, onPay: () => void) => {
     updateStore('showCashuInvoiceModal', () => true);
@@ -268,6 +285,8 @@ export const AppProvider = (props: { children: JSXElement }) => {
       closeContextMenu,
       openLnbcModal,
       closeLnbcModal,
+      openLnbcWithNoFooterModal,
+      closeLnbcWithNoFooterModal,
       openConfirmModal,
       closeConfirmModal,
       openCashuModal,

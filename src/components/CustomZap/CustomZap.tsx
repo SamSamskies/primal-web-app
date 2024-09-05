@@ -16,6 +16,7 @@ import TextInput from '../TextInput/TextInput';
 import { useToastContext } from '../Toaster/Toaster';
 
 import styles from './CustomZap.module.scss';
+import { useShowLnbcWithNoFooterModal } from "../../hooks/useShowLnbcWithNoFooterModal";
 
 const CustomZap: Component<{
   id?: string,
@@ -32,6 +33,7 @@ const CustomZap: Component<{
   const account = useAccountContext();
   const intl = useIntl();
   const settings = useSettingsContext();
+  const showLnbcWithNoFooterModal = useShowLnbcWithNoFooterModal();
 
   const [selectedValue, setSelectedValue] = createSignal(settings?.availableZapOptions[0] || defaultZapOptions[0]);
 
@@ -106,6 +108,7 @@ const CustomZap: Component<{
             selectedValue().amount || 0,
             selectedValue().message,
             account.relays,
+            showLnbcWithNoFooterModal
           );
 
           handleZap(success);

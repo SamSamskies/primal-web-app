@@ -21,6 +21,7 @@ import NoteContextMenu from '../Note/NoteContextMenu';
 import LnQrCodeModal from '../LnQrCodeModal/LnQrCodeModal';
 import ConfirmModal from '../ConfirmModal/ConfirmModal';
 import CashuQrCodeModal from '../CashuQrCodeModal/CashuQrCodeModal';
+import LnQrCodeWithNoFooterModal from "../LnQrCodeModal/LnQrCodeWithNoFooterModal";
 
 export const [isHome, setIsHome] = createSignal(false);
 
@@ -170,6 +171,13 @@ const Layout: Component = () => {
 
                 <LnQrCodeModal
                   open={app?.showLnInvoiceModal}
+                  lnbc={app?.lnbc?.invoice || ''}
+                  onPay={app?.lnbc?.onPay}
+                  onClose={app?.lnbc?.onCancel}
+                />
+
+                <LnQrCodeWithNoFooterModal
+                  open={app?.showLnInvoiceWithNoFooterModal}
                   lnbc={app?.lnbc?.invoice || ''}
                   onPay={app?.lnbc?.onPay}
                   onClose={app?.lnbc?.onCancel}

@@ -21,8 +21,10 @@ const LnQrCodeModal: Component<{
   lnbc: string | undefined,
   onPay?: () => void,
   onClose?: () => void,
+  hasFooter?: boolean,
 }> = (props) => {
   const intl = useIntl();
+  const hasFooter = props.hasFooter ?? true
 
   const [invoice, setInvoice] = createStore<LnbcInvoice>(emptyInvoice);
 
@@ -67,10 +69,10 @@ const LnQrCodeModal: Component<{
           <div class={styles.description}>{description()}</div>
           <div class={styles.amount}>{amount()}</div>
 
-          <div class={styles.separator}></div>
+          {hasFooter && <div class={styles.separator}></div>}
         </div>
 
-        <div class={styles.footer}>
+        {hasFooter && <div class={styles.footer}>
           <div class={styles.expiryDate}>
             {intl.formatMessage(lnInvoice.expires, { date: dateFuture(expiryDate(), 'long').label })}
           </div>
@@ -79,7 +81,7 @@ const LnQrCodeModal: Component<{
               {intl.formatMessage(lnInvoice.pay)}
             </ButtonPrimary>
           </div>
-        </div>
+        </div>}
       </div>
     </Modal>
   );

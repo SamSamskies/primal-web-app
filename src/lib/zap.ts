@@ -5,7 +5,7 @@ import { PrimalNote, PrimalUser } from "../types/primal";
 import { logError } from "./logger";
 import { enableWebLn, sendPayment, signEvent } from "./nostrAPI";
 
-export const zapNote = async (note: PrimalNote, sender: string | undefined, amount: number, comment = '', relays: Relay[]) => {
+export const zapNote = async (note: PrimalNote, sender: string | undefined, amount: number, comment = '', relays: Relay[], onWebLnFail = (invoice: string) => {}) => {
   if (!sender) {
     return false;
   }
@@ -40,8 +40,13 @@ export const zapNote = async (note: PrimalNote, sender: string | undefined, amou
     const r2 = await (await fetch(`${callback}?amount=${sats}&nostr=${event}`)).json();
     const pr = r2.pr;
 
-    await enableWebLn();
-    await sendPayment(pr);
+    try {
+      await enableWebLn();
+      await sendPayment(pr);
+    } catch {
+      onWebLnFail(pr);
+    }
+
 
     return true;
   } catch (reason) {
