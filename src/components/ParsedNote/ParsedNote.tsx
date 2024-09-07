@@ -855,10 +855,14 @@ const ParsedNote: Component<{
           );
         }
 
+        const endsWithPuncuation =  /[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]$/.test(token)
+        const href = endsWithPuncuation ? token.slice(0, -1) : token
+
         setWordsDisplayed(w => w + 1);
         return (
           <span data-url={token}>
-            <a link href={token} target="_blank" >{token}</a>
+            <a link href={href} target="_blank" >{href}</a>
+            {endsWithPuncuation ? token.slice(-1) : ''}
           </span>
         );
       }}
@@ -1189,7 +1193,6 @@ const ParsedNote: Component<{
   }
 
   const renderContent = (item: NoteContent, index: number) => {
-
 
     const renderers: Record<string, (item: NoteContent, index?: number) => JSXElement> = {
       linebreak: renderLinebreak,
