@@ -711,7 +711,7 @@ const EditBox: Component<{
       const user = userRefs[name];
 
       // @ts-ignore
-      return `${anythingBefore} nostr:${user.npub}`;
+      return `${anythingBefore}nostr:${user.npub}`;
     });
 
     if (account) {
