@@ -73,6 +73,7 @@ export const defaultFeeds = [
 export const timeframeLabels: Record<string, string> = {
   latest: 'latest',
   trending: 'trending',
+  trending4h:  'trending 4h',
   popular: 'popular',
   mostzapped: 'most zapped',
 };

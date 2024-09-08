@@ -453,11 +453,7 @@ export const SettingsProvider = (props: { children: ContextChildren }) => {
 
           if (feeds) {
 
-            // TODO: figure out a better way to add this feed
-            let fs = [...feeds, {
-              "name": "Trending, my network 4h",
-              "hex": "network;trending4h"
-            }];
+            let fs = [...feeds];
 
             const feedLatest = {
               name: feedLatestLabel,

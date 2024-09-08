@@ -30,6 +30,7 @@ const itemInfo: Record<string, ScopeDescriptor & { icon: string }> = {
 
 const timeframeIcons: Record<string, string> = {
   trending: styles.flameIcon,
+  trending4h: styles.flameIcon,
   mostzapped: styles.zapsIcon,
   popular: styles.likesIcon,
   latest: styles.clockIcon,
@@ -78,6 +79,7 @@ const ExploreMenuItem: Component<{ scope: string, stat: number, id?: string }> =
       </div>
       <div class={styles.itemOptions}>
         {timeframeOption('trending')}
+        {timeframeOption('trending4h')}
         {timeframeOption('mostzapped')}
         {timeframeOption('popular')}
         {timeframeOption('latest')}

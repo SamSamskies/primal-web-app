@@ -1784,7 +1784,7 @@ export const scopeDescriptors: Record<string, ScopeDescriptor> = {
     },
     description: {
       id: 'explore.scopes.tribe.description',
-      defaultMessage: 'accounts you follow <div>+ your followers</div>',
+      defaultMessage: 'accounts you follow + your followers',
       description: 'Description of the tribe scope description',
     },
   },
@@ -1801,7 +1801,7 @@ export const scopeDescriptors: Record<string, ScopeDescriptor> = {
     },
     description: {
       id: 'explore.scopes.network.description',
-      defaultMessage: 'accounts you follow <div>+ everyone they follow</div>',
+      defaultMessage: 'accounts you follow + everyone they follow',
       description: 'Description of the network scope description',
     },
   },
@@ -1834,6 +1834,11 @@ export const timeframeDescriptors: Record<string, MessageDescriptor> = {
     id: 'explore.timeframes.trending.caption',
     defaultMessage: 'trending',
     description: 'Caption for the trending timeframe',
+  },
+  trending4h: {
+    id: 'explore.timeframes.trending.caption',
+    defaultMessage: 'trending 4h',
+    description: 'Caption for the trending 4h timeframe',
   },
   popular: {
     id: 'explore.timeframes.popular.caption',

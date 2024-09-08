@@ -21,7 +21,7 @@ import PageTitle from '../components/PageTitle/PageTitle';
 
 
 const scopes = ['follows', 'tribe', 'network', 'global'];
-const timeframes = ['latest', 'trending', 'popular', 'mostzapped'];
+const timeframes = ['latest', 'trending', 'trending4h', 'popular', 'mostzapped'];
 
 const Explore: Component = () => {
 
