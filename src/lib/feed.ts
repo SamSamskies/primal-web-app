@@ -220,6 +220,13 @@ export const getExploreFeed = (
     payload.created_after = yesterday;
   }
 
+  if (timeframe === 'trending4h') {
+    const fourHAgo = Math.floor((new Date().getTime() - (4 * hour)) / 1000);
+
+    payload.timeframe = 'trending';
+    payload.created_after = fourHAgo;
+  }
+
   if (timeframe === 'mostzapped4h') {
     const fourHAgo = Math.floor((new Date().getTime() - (4 * hour)) / 1000);
 
