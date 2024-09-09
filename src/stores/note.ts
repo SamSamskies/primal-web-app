@@ -357,6 +357,7 @@ export const sortByZapped = (posts: PrimalNote[], reverse = false) => {
 export const sortingPlan = (topic: string = '') => {
   const sortingFunctions: Record<string, Function> = {
     trending: sortByScore24h,
+    trending4h: sortByScore,
     popular: sortByScore,
     latest: sortByRecency,
     mostzapped: sortByZapped,
