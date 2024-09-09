@@ -77,7 +77,7 @@ const Downloads: Component = () => {
               darkIcon={gitHubLight}
               lightIcon={gitHubDark}
               label={intl.formatMessage(t.links.webApp)}
-              href='https://github.com/PrimalHQ/primal-web-app'
+              href='https://github.com/SamSamskies/primal-web-app'
             />
 
             <ExternalLink
