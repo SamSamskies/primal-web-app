@@ -218,13 +218,7 @@ const CreateAccount: Component = () => {  const intl = useIntl();
         tags.push(['p', pubkey]);
       }
 
-      const sendResult = await sendContacts(tags, date, '', account.relays, relaySettings);
-
-      if (sendResult.success && sendResult.note) {
-        triggerImportEvents([sendResult.note], `import_contacts_${APP_ID}`, () => {
-          getProfileContactList(pubkey, `user_contacts_${APP_ID}`);
-        });
-      }
+      await sendContacts(tags, date, '', account.relays, relaySettings);
 
       const relayResult = await sendRelays(account.relays, relaySettings);
 
@@ -311,7 +305,6 @@ const CreateAccount: Component = () => {  const intl = useIntl();
           const userData = content as NostrUserContent;
           const user = convertToUser(userData);
 
-          !followed.includes(user.pubkey) && setFollowed(followed.length, user.pubkey);
           setSuggestedData('users', () => ({ [user.pubkey]: { ...user }}))
         }
       }
